@@ -39,41 +39,41 @@ namespace SportsStore.UnitTests {
             Assert.AreEqual(prodArray[0].Name, "P4");
             Assert.AreEqual(prodArray[1].Name, "P5");
         }
-    }
 
-    [TestMethod]
-    public void Can_Generate_Page_Links() {
 
-        //Arrange - define an HTML helper - we need to do this
-        //in order to apply the extension method
-        HtmlHelper myHelper = null;
+        [TestMethod]
+        public void Can_Generate_Page_Links() {
 
-        //Arrange - create PagingInfo data
-        PagingInfo pagingInfo = new PagingInfo {
-            CurrentPage = 2,
-            TotalItems = 28,
-            ItemsPerPage = 10
-        };
+            //Arrange - define an HTML helper - we need to do this
+            //in order to apply the extension method
+            HtmlHelper myHelper = null;
 
-        //Arrange - set up the delegate using a lambda expression
-        Func<int, string> pageUrlDelegate = i => "Page" + i;
+            //Arrange - create PagingInfo data
+            PagingInfo pagingInfo = new PagingInfo {
+                CurrentPage = 2,
+                TotalItems = 28,
+                ItemsPerPage = 10
+            };
 
-        //Act
-        MvcHtmlString result = myHelper.PageLinks(pagingInfo, pageUrlDelegate);
+            //Arrange - set up the delegate using a lambda expression
+            Func<int, string> pageUrlDelegate = i => "Page" + i;
 
-        //Assert
-        Assert.AreEqual(@"<a class=""btn btn-default"" href=""Page1"">1</a>"
-    + @"<a class=""btn btn-default btn-primary selected"" href=""Page2"">2</a>"
-            + @"<a class=""btn btn-default"" href=""Page3"">3</a>",
-            result.ToString());
+            //Act
+            MvcHtmlString result = myHelper.PageLinks(pagingInfo, pageUrlDelegate);
+
+            //Assert
+            Assert.AreEqual(@"<a class=""btn btn-default"" href=""Page1"">1</a>"
+        + @"<a class=""btn btn-default btn-primary selected"" href=""Page2"">2</a>"
+                + @"<a class=""btn btn-default"" href=""Page3"">3</a>",
+                result.ToString());
         }
 
         [TestMethod]
         public void Can_Send_Pagination_View_Model() {
 
-        //Arrange
-        Mock<IProductRepository> mock = new Mock<IProductRepository>();
-        mock.Setup(m => m.Products).Returns(new Product[] {
+            //Arrange
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[] {
             new Product {ProductID = 1, Name = "P1" },
             new Product {ProductID = 2, Name = "P2" },
             new Product {ProductID = 3, Name = "P3" },
@@ -81,19 +81,20 @@ namespace SportsStore.UnitTests {
             new Product {ProductID = 5, Name = "P5" }
         });
 
-        //Arrange
-        ProductController controller = new ProductController(mock.Object);
-        controller.PageSize = 3;
+            //Arrange
+            ProductController controller = new ProductController(mock.Object);
+            controller.PageSize = 3;
 
-        //Act
-        ProductsListViewModel result = (ProductsListViewModel)controller.List(2).Model;
+            //Act
+            ProductsListViewModel result = (ProductsListViewModel)controller.List(2).Model;
 
-        //Assert
-        PagingInfo pageInfo = result.PagingInfo;
-        Assert.AreEqual(pageInfo.CurrentPage, 2);
-        Assert.AreEqual(pageInfo.ItemsPerPage, 3);
-        Assert.AreEqual(pageInfo.TotalItems, 5);
-        Assert.AreEqual(pageInfo.TotalPages, 2);
+            //Assert
+            PagingInfo pageInfo = result.PagingInfo;
+            Assert.AreEqual(pageInfo.CurrentPage, 2);
+            Assert.AreEqual(pageInfo.ItemsPerPage, 3);
+            Assert.AreEqual(pageInfo.TotalItems, 5);
+            Assert.AreEqual(pageInfo.TotalPages, 2);
+        }
     }
 }
 
