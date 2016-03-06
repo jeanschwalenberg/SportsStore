@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using SportsStore.Domain.Abstract;
 using SportsStore.Domain.Entities;
+using SportsStore.WebUI.Models;
 
 namespace SportsStore.WebUI.Controllers 
     {
@@ -17,7 +18,7 @@ namespace SportsStore.WebUI.Controllers
 
         public ViewResult Index(string returnUrl) {
             return View(new CartIndexViewModel {
-                Cart = GetCart().
+                Cart = GetCart(),
                 ReturnUrl = returnUrl
             });
         }
