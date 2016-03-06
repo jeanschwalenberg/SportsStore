@@ -1,0 +1,8 @@
+﻿@model SportsStore.Domain.Entities.Cart
+
+<div class="navbar-right">
+    @Html.ActionLink("Checkout", "Index", "Cart"){ 
+        return PartialView(cart);
+    }
+</div>
+
