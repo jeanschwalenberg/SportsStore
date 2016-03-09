@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
 using SportsStore.Domain.Abstract;
 using SportsStore.Domain.Entities;
 

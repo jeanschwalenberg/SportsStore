@@ -253,7 +253,7 @@ namespace SportsStore.UnitTests {
             //Assert - check that the method is returning the Completed view
             Assert.AreEqual("Completed", result.ViewName);
             //Assert - check that I am passing a valid model to the view
-            Assert.AreEqual(true, result.ViewData.ModelState.IsReadOnly);
+            Assert.AreEqual(true, result.ViewData.ModelState.IsValid);
         }
 
     }
