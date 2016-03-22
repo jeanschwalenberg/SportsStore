@@ -14,7 +14,9 @@
 </head>
 <body>
     <div>
-        @RenderBody()
+        @if (TempData["message"] != null) {
+            <div class="alert alert-success">@TempData</div>
+        }@RenderBody();
     </div>
 </body>
 </html>
