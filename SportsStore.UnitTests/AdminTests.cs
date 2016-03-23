@@ -118,7 +118,7 @@ namespace SportsStore.UnitTests {
             //Assert - check that repository was not called
             mock.Verify(m => m.SaveProduct(It.IsAny<Product>()), Times.Never());
             //Assert - check the method result type
-            Assert.IsNotInstanceOfType(result, typeof(ViewResult));
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
     }
 }
